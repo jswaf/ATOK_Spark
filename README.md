@@ -55,6 +55,8 @@ Issues(投稿)を使ってコミュニティ運営しますので、**ATOK Spark
 <br>
 定型フレーズの定義ファイルは、テキストファイルで用意されており、自由にカスタマイズできます。
 <br>
+定義ファイルはdef_fileフォルダに近日公開予定です。
+<br>
 <a>
 　<img src="img/code.png" alt="" width="620" height="338" border="0" />
 </a>
