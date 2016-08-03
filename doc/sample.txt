@@ -1,0 +1,49 @@
+ATOK Spark 利用可能なトリガー一覧
+株式会社ジャストシステム
+Ver 1.0.1.0
+
+　● 動作テスト
+
+　　test:
+　　　　→ テスト文字列
+
+　　teikei:
+　　　　→ 定型文テスト
+
+
+　● コードスニペット
+
+　　　definc:
+　　　　　→ (C++) include文をまとめて
+
+　　　main:
+　　　　　→ (C++) main関数をまとめて
+
+　　　fori:
+　　　　　→ for文を入力（変数を引数渡し）
+
+　　　doxy:
+　　　javadoc:
+　　　　　→ doxygen形式のコメント入力
+
+
+　● ログ書き込みスニペット
+　　　log:
+　　　　→ logger.log( Level.INFO, "" );
+      loge:
+　　　　→ logger.log( Level.ERROR, "" );
+
+
+　● 都道府県名一覧
+
+　　　kenmei:
+　　　　→ 列挙
+
+　　　kenmeisel:
+　　　　→ HTMLのinputリストボックスのスニペット
+
+
+　● 議事録テンプレート
+
+　　　giziroku:
+　　　gijiroku:
