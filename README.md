@@ -1,4 +1,4 @@
-<a href="http://github.com/justsystems/atokspark">
+<a href="https://github.com/JustSystems/ATOK_Spark">
  <img src="img/ATOKSpark.png" alt="" width="453" height="70" border="0" />
 </a>
 
