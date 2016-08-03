@@ -31,7 +31,7 @@ Issues(投稿)を使ってコミュニティ運営しますので、**ATOK Spark
 
 <br>
 **ATOK Spark** を使ってみたいという方は、以下からダウンロードできます。  
-[最新タグのダウンロードから](http://github.com/justsystems/atokspark)  
+[最新タグのダウンロードから](https://github.com/JustSystems/ATOK_Spark/releases)  
 ※ **ATOK Spark**には、日本語入力(かな漢字変換)機能は搭載されておりません。
 <br>
 ***
@@ -179,6 +179,6 @@ ATOK Spark フレーズ定義を作りました！ ぜひ使ってみてくだ�
 # ダウンロード
 Windows/Mac バイナリ公開中
 
-[最新タグのダウンロードから](http://github.com/justsystems/atokspark)  
+[最新タグのダウンロードから](https://github.com/JustSystems/ATOK_Spark/releases)  
 ※ **ATOK Spark**には、日本語入力(かな漢字変換)機能は搭載されておりません。
 ***
