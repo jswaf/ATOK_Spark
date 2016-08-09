@@ -61,8 +61,8 @@ Issues(投稿)を使ってコミュニティ運営しますので、**ATOK Spark
 　<img src="img/code.png" alt="" width="620" height="338" border="0" />
 </a>
 <br>
-<br>
-<br>
+定義ファイルの書き方は、[リファレンス](/doc/reference.txt)をご確認ください。
+<br><br><br>
 
 ### **★ Windowsでも、Macでも使える**  
 <br>
