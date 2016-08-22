@@ -1,0 +1,38 @@
+<atokdef version="1.0">
+
+	<replace>
+		<trigger>javamain:</trigger>
+		<text><![CDATA[/**
+ * 
+ */
+public class Main {
+    /**
+     * 
+     * @param arguments 
+     */
+    public static void main(String[] arguments) {
+        
+    }
+}
+]]></text>
+		<help guidance="Javaのメインクラススニペット" detail="Javaのメインクラスのスニペット例です"/>
+	</replace>
+
+	<replace>
+		<trigger>javadoc:</trigger>
+		<text><![CDATA[    /**
+     * 
+     * 
+     * @param param1 param1_description
+     * @param param2 param2_description
+     * @return <code>0</code> if hoge is fuga, otherwise <code>1</code>
+     * @throws Exception if foo was failed
+     * @author author_name
+     * @since first_implemented_version
+     * @see <a href="http://www.example.com/">Example</a>
+     * @see java.lang.String#equals(Object) equals
+     */
+]]></text>
+		<help guidance="javadocスニペット" detail="javadocのスニペット例です"/>
+	</replace>
+</atokdef>
