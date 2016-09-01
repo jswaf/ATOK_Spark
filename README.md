@@ -179,6 +179,7 @@ ATOK Spark フレーズ定義を作りました！ ぜひ使ってみてくだ�
 Windows/Mac バイナリ公開中
 
 [最新タグのダウンロードから](https://github.com/JustSystems/ATOK_Spark/releases) 
+
 ※ **ATOK Spark**には、日本語入力(かな漢字変換)機能は搭載されておりません。
 
 **アップデートのお知らせ**
