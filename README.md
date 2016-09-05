@@ -36,7 +36,7 @@ Issues(投稿)を使ってコミュニティ運営しますので、**ATOK Spark
 <br>
 <br>
 9月2日に開催しましたJust TeckTalkにて**ATOK Spark**を紹介しました。そのときのスライドを以下で公開しています。
-(http://www.slideshare.net/JSUXDesign/atok-spark-java)
+http://www.slideshare.net/JSUXDesign/atok-spark-java
 <br>
 
 ***
