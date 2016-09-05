@@ -34,6 +34,11 @@ Issues(投稿)を使ってコミュニティ運営しますので、**ATOK Spark
 [最新タグのダウンロードから](https://github.com/JustSystems/ATOK_Spark/releases)  
 ※ **ATOK Spark**には、日本語入力(かな漢字変換)機能は搭載されておりません。
 <br>
+<br>
+9月2日に開催しましたJust TeckTalkにて**ATOK Spark**を紹介しました。そのときのスライドを以下で公開しています。
+(http://www.slideshare.net/JSUXDesign/atok-spark-java)
+<br>
+
 ***
 # **ATOK Spark** の特長と機能  
 <br>
