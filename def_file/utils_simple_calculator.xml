@@ -1,0 +1,18 @@
+<atokdef version="1.0">
+	<help name="sc">
+		<guidance>簡易計算機</guidance>
+		<detail>ATOK Sparkの機能が簡易な計算機を容易に実現できることを示すサンプルです。sc(Simple Calculator)</detail>
+		<notice>二項目の加算のみ対応。</notice>
+		<example guid="加算例1">sc50+12:</example>
+		<example guid="加算例2">sc16000000+3650000:</example>
+	</help>
+
+	<replace>
+		<trigger type="regex" min="5" max="21">sc([0-9]{1,9})\+([0-9]{1,9}):</trigger>
+		<text type="xslt"
+			xml="utils_simple_calculator/calc.xml"
+			xsl="utils_simple_calculator/calc.xsl" />
+		<help class="sc" />
+	</replace>
+
+</atokdef>

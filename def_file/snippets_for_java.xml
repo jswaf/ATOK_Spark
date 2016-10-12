@@ -15,7 +15,10 @@ public class Main {
     }
 }
 ]]></text>
-		<help guidance="Javaのメインクラススニペット" detail="Javaのメインクラスのスニペット例です"/>
+		<help guidance="Javaのメインクラススニペット" detail="Javaのメインクラスのスニペット例です">
+			<example guid="javaのメイン関数のスニペット">javamain:</example>
+			<creator>[issue #3] @jswaf</creator>
+		</help>
 	</replace>
 
 	<replace>
@@ -33,6 +36,9 @@ public class Main {
      * @see java.lang.String#equals(Object) equals
      */
 ]]></text>
-		<help guidance="javadocスニペット" detail="javadocのスニペット例です"/>
+		<help guidance="javadocスニペット" detail="javadocのスニペット例です">
+			<example guid="javadocのスニペット">javadoc:</example>
+			<creator>[issue #3] @jswaf</creator>
+		</help>
 	</replace>
 </atokdef>

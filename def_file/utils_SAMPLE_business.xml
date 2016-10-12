@@ -1,0 +1,23 @@
+<atokdef version="1.0">
+
+	<replace>
+		<trigger>teikei:</trigger>
+		<text>#ATOK::DATE[GMD_D_Z]#
+『宛先会社名』
+『宛先役職名』　『宛先氏名』殿
+
+#ATOK::PROFILE[company]#
+#ATOK::PROFILE[section]#　#ATOK::PROFILE[name]#
+
+新規お取引について
+
+拝復
+貴社ますますご清栄のこととお慶び申し上げます。
+ただ今、新規お取引のお申込みを拝受いたしました。弊社といたしましても、願ってもないご縁と誠にありがたく存じます。何とぞ、今後末永くお引き立て賜りますようお願い申し上げます。
+早速、担当課長を伺わせますので、取引の細部についてご相談くださいますようお願い申し上げます。
+まずは、書中にて御礼申し上げます。
+敬具</text>
+		<help guidance="定型文スニペット例" detail="『新規お取引について』定型文のスニペット例です。"/>
+	</replace>
+
+</atokdef>

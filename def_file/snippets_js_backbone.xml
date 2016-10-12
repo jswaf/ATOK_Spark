@@ -1,0 +1,66 @@
+<atokdef version="1.0">
+
+	<help name="backbone">
+		<guidance>Backbone.jsのスニペット</guidance>
+		<detail>Backbone.jsの入力スニペットです</detail>
+		<example guid="View(既存)">bbview:</example>
+		<example guid="Viewボタン(新規)">bbview:button:</example>
+		<example guid="Viewリンク(新規)">bbview:link:</example>
+	</help>
+
+	<replace>
+		<trigger>bbview:</trigger>
+		<text>var MyView = Backbone.View.extend({
+    el: '#ATOK::CURSOR#'
+});
+var view = new MyView();</text>
+		<help class="backbone"/>
+	</replace>
+
+	<replace>
+		<trigger>bbview:button:</trigger>
+		<text>var SampleView = Backbone.View.extend({
+	tagName : 'input',
+	className : 'class_input',
+	id : 'id_input',
+	attributes : {
+	    type : 'button',
+	    value : '更新'
+	},
+	events : {
+	    'click' : 'onClick'
+	},
+	onClick : function(event) {
+	    ★TODO:押下処理
+	}
+});</text>
+		<help class="backbone"/>
+	</replace>
+
+
+
+	<replace>
+		<trigger>bbview:link:</trigger>
+		<text>var SampleView = Backbone.View.extend({
+	tagName : 'a',
+	className : 'class_a',
+	id : 'id_a',
+	attributes : {
+	    href : 'javascript:void(0)'
+	},
+	events : {
+	    'click' : 'onClick'
+	},
+	render : function() {
+	    this.$el.html('リンクが張られる文字列');
+	    return this;
+	},
+	onClick : function(event) {
+	    ★TODO:押下処理
+	}
+});</text>
+		<help class="backbone"/>
+	</replace>
+
+
+</atokdef>

@@ -1,0 +1,440 @@
+<atokdef>
+	<help name="msgbox">
+		<guidance>メッセージボックスのスニペット</guidance>
+		<detail>各種プログラム言語において、メッセージボックスのスニペットを入力します。</detail>
+		<notice>一部言語ではパラメータが無効となる場合があります。</notice>
+		<example guid="メッセージボックスのパラメータのビューを表示">msgbox:</example>
+		<example guid="Windows C++(Win32)の単純なメッセージボックスを出力">msgbox:win32:</example>
+		<example guid="Windows C++(Win32)の「情報表示」で[はい]/[いいえ]二択のメッセージボックスを出力">msgbox:info:yesno:win32:</example>
+		<example guid="Objective C++で[はい]/[いいえ]二択のメッセージボックスを出力">msgbox:yesno:objc:</example>
+		<example guid="Android Javaで[はい]/[いいえ]二択のメッセージボックスを出力">msgbox:yesno:and:</example>
+		<example guid="C#の「エラー表示」のメッセージボックスを出力">msgbox:error:cs:</example>
+		<example guid="MFCの「エラー表示」のメッセージボックスを出力">msgbox:error:mfc:</example>
+		<example guid="VBAの「情報表示」で[OK]/[Cancel]二択のメッセージボックスを出力">msgbox:info:okcancel:vba:</example>
+		<example guid="Javascriptの単純なメッセージボックスを出力">msgbox:js:</example>
+		<example guid="Matlabの「はてな表示」のメッセージボックスを出力">msgbox:hatena:matlab:</example>
+		<example guid="Swingで「情報表示」のメッセージボックスを出力">msgbox:info:swing:</example>
+	</help>
+
+	<view>
+		<trigger type="regex" min="0" max="100">msgbox:(info:|error:|hatena:|stop:|)(ok:|okcancel:|yesno:|)</trigger>
+		<text type="xslt"
+			xml="snippets_msgbox/msgbox_outline.xml"
+			xsl="snippets_msgbox/msgbox_outline.xsl"
+		 />
+		<define>#ATOK::REGEX::CAPTURE[1]#</define>
+		<define>#ATOK::REGEX::CAPTURE[2]#</define>
+		<help class="msgbox" />
+	</view>
+
+
+
+	<replace>
+		<trigger type="regex" min="0" max="100">msgbox_filter_option:(mfc|win32|cs|vba|matlab|swing):(info|error|hatena|stop):</trigger>
+		<text type="xslt"
+			xml="snippets_msgbox/msgbox_option.xml"
+			xsl="snippets_msgbox/msgbox_filter.xsl"
+		 />
+		<define>#ATOK::REGEX::CAPTURE[1]#</define>
+		<define>#ATOK::REGEX::CAPTURE[2]#</define>
+		<help class="msgbox" />
+	</replace>
+
+
+	<replace>
+		<trigger>msgbox:mfc:</trigger>
+		<text>AfxMessageBox( _T("★表示文字列★"), IDOK, 0 );</text>
+		<help class="msgbox" />
+	</replace>
+
+	<replace>
+		<trigger type="regex" min="0" max="100">msgbox:(info|error|hatena|stop):(ok:|)mfc:</trigger>
+		<text>AfxMessageBox( _T("★表示文字列★"), IDOK | #ATOK::INPUT::TXT[msgbox_filter_option:mfc:#ATOK::REGEX::CAPTURE[1]#:]#, 0 );</text>
+		<help class="msgbox" />
+	</replace>
+
+	<replace>
+		<trigger type="regex" min="0" max="100">msgbox:(info|error|hatena|stop):okcancel:mfc:</trigger>
+		<text>#ATOK::INPUT::TXT[msgbox_mfc_yesno_filter:#ATOK::DEFINE::TEXT[0]#:MB_OKCANCEL:IDOK:OK:CANCEL:]#</text>
+		<define>#ATOK::INPUT::TXT[msgbox_filter_option:mfc:#ATOK::REGEX::CAPTURE[1]#:]#</define>
+		<help class="msgbox" />
+	</replace>
+
+	<replace>
+		<trigger type="regex" min="0" max="100">msgbox:(info|error|hatena|stop):yesno:mfc:</trigger>
+		<text>#ATOK::INPUT::TXT[msgbox_mfc_yesno_filter:#ATOK::DEFINE::TEXT[0]#:MB_YESNO:IDYES:Yes:No:]#</text>
+		<define>#ATOK::INPUT::TXT[msgbox_filter_option:mfc:#ATOK::REGEX::CAPTURE[1]#:]#</define>
+		<help class="msgbox" />
+	</replace>
+
+	<replace>
+		<trigger type="regex" min="0" max="100">msgbox_mfc_yesno_filter:([A-Za-z_]+):([A-Za-z_]+):([A-Za-z_]+):([A-Za-z_]+):([A-Za-z_]+):</trigger>
+		<text>	if( AfxMessageBox( _T("★表示文字列★"), #ATOK::REGEX::CAPTURE[2]# | #ATOK::REGEX::CAPTURE[1]#, 0 ) == #ATOK::REGEX::CAPTURE[3]# ){
+		// #ATOK::REGEX::CAPTURE[4]#
+	}else{
+		// #ATOK::REGEX::CAPTURE[5]#
+	}</text>
+
+		<help class="msgbox" />
+	</replace>
+
+
+
+	<replace>
+		<trigger>msgbox:win32:</trigger>
+		<text>MessageBox( NULL, L"★表示文字列★", L"★タイトル★", MB_OK );</text>
+		<help class="msgbox" />
+	</replace>
+
+	<replace>
+		<trigger type="regex" min="0" max="100">msgbox:(info|error|hatena|stop):(ok:|)win32:</trigger>
+		<text>MessageBox( NULL, L"★表示文字列★", L"★タイトル★", MB_OK | #ATOK::INPUT::TXT[msgbox_filter_option:win32:#ATOK::REGEX::CAPTURE[1]#:]# );</text>
+		<help class="msgbox" />
+	</replace>
+
+	<replace>
+		<trigger type="regex" min="0" max="100">msgbox:(info|error|hatena|stop):okcancel:win32:</trigger>
+		<text>#ATOK::INPUT::TXT[msgbox_win32_yesno_filter:#ATOK::DEFINE::TEXT[0]#:MB_OKCANCEL:IDOK:OK:CANCEL:]#</text>
+		<define>#ATOK::INPUT::TXT[msgbox_filter_option:win32:#ATOK::REGEX::CAPTURE[1]#:]#</define>
+		<help class="msgbox" />
+	</replace>
+
+	<replace>
+		<trigger type="regex" min="0" max="100">msgbox:(info|error|hatena|stop):yesno:win32:</trigger>
+		<text>#ATOK::INPUT::TXT[msgbox_win32_yesno_filter:#ATOK::DEFINE::TEXT[0]#:MB_YESNO:IDYES:Yes:No:]#</text>
+		<define>#ATOK::INPUT::TXT[msgbox_filter_option:win32:#ATOK::REGEX::CAPTURE[1]#:]#</define>
+		<help class="msgbox" />
+	</replace>
+
+	<replace>
+		<trigger type="regex" min="0" max="100">msgbox_win32_yesno_filter:([A-Za-z_]+):([A-Za-z_]+):([A-Za-z_]+):([A-Za-z_]+):([A-Za-z_]+):</trigger>
+		<text>	if( MessageBox( NULL, L"★表示文字列★", L"★タイトル★", #ATOK::REGEX::CAPTURE[2]# | #ATOK::REGEX::CAPTURE[1]# ) == #ATOK::REGEX::CAPTURE[3]# ){
+		// #ATOK::REGEX::CAPTURE[4]#
+	}else{
+		// #ATOK::REGEX::CAPTURE[5]#
+	}</text>
+
+		<help class="msgbox" />
+	</replace>
+
+
+
+
+
+	<replace>
+		<trigger>msgbox:cs:</trigger>
+		<text>MessageBox.Show( "★表示文字列★", "★タイトル★", MessageBoxButtons.OK );</text>
+		<help class="msgbox" />
+	</replace>
+
+
+	<replace>
+		<trigger type="regex" min="0" max="100">msgbox:(info|error|hatena|stop):(ok:|)cs:</trigger>
+		<text>MessageBox.Show( "★表示文字列★", "★タイトル★", MessageBoxButtons.OK, #ATOK::INPUT::TXT[msgbox_filter_option:cs:#ATOK::REGEX::CAPTURE[1]#:]# );</text>
+		<help class="msgbox" />
+	</replace>
+
+	<replace>
+		<trigger type="regex" min="0" max="100">msgbox:(info|error|hatena|stop):okcancel:cs:</trigger>
+		<text>#ATOK::INPUT::TXT[msgbox_cs_yesno_filter:#ATOK::DEFINE::TEXT[0]#:MessageBoxButtons.OKCancel:DialogResult.OK:OK:CANCEL:]#</text>
+		<define>#ATOK::INPUT::TXT[msgbox_filter_option:cs:#ATOK::REGEX::CAPTURE[1]#:]#</define>
+		<help class="msgbox" />
+	</replace>
+
+	<replace>
+		<trigger type="regex" min="0" max="100">msgbox:(info|error|hatena|stop):yesno:cs:</trigger>
+		<text>#ATOK::INPUT::TXT[msgbox_cs_yesno_filter:#ATOK::DEFINE::TEXT[0]#:MessageBoxButtons.YesNo:DialogResult.Yes:Yes:No:]#</text>
+		<define>#ATOK::INPUT::TXT[msgbox_filter_option:cs:#ATOK::REGEX::CAPTURE[1]#:]#</define>
+		<help class="msgbox" />
+	</replace>
+
+	<replace>
+		<trigger type="regex" min="0" max="100">msgbox_cs_yesno_filter:([A-Za-z_.]+):([A-Za-z_.]+):([A-Za-z_.]+):([A-Za-z_.]+):([A-Za-z_.]+):</trigger>
+		<text>	if( MessageBox.Show( "★表示文字列★", "★タイトル★", #ATOK::REGEX::CAPTURE[2]#, #ATOK::REGEX::CAPTURE[1]# ) == #ATOK::REGEX::CAPTURE[3]# ){
+		// #ATOK::REGEX::CAPTURE[4]#
+	}else{
+		// #ATOK::REGEX::CAPTURE[5]#
+	}</text>
+
+		<help class="msgbox" />
+	</replace>
+
+
+
+	<replace>
+		<trigger>msgbox:vba:</trigger>
+		<text>MsgBox "★表示文字列★"</text>
+		<help class="msgbox" />
+	</replace>
+
+
+	<replace>
+		<trigger type="regex" min="0" max="100">msgbox:(info|error|hatena|stop):(ok:|)vba:</trigger>
+		<text>MsgBox "★表示文字列★", #ATOK::INPUT::TXT[msgbox_filter_option:vba:#ATOK::REGEX::CAPTURE[1]#:]#</text>
+		<help class="msgbox" />
+	</replace>
+
+	<replace>
+		<trigger type="regex" min="0" max="100">msgbox:(info|error|hatena|stop):okcancel:vba:</trigger>
+		<text>#ATOK::INPUT::TXT[msgbox_vba_yesno_filter:#ATOK::DEFINE::TEXT[0]#:vbOKCancel:vbOK:OK:CANCEL:]#</text>
+		<define>#ATOK::INPUT::TXT[msgbox_filter_option:vba:#ATOK::REGEX::CAPTURE[1]#:]#</define>
+		<help class="msgbox" />
+	</replace>
+
+	<replace>
+		<trigger type="regex" min="0" max="100">msgbox:(info|error|hatena|stop):yesno:vba:</trigger>
+		<text>#ATOK::INPUT::TXT[msgbox_vba_yesno_filter:#ATOK::DEFINE::TEXT[0]#:vbYesNo:vbYes:Yes:No:]#</text>
+		<define>#ATOK::INPUT::TXT[msgbox_filter_option:vba:#ATOK::REGEX::CAPTURE[1]#:]#</define>
+		<help class="msgbox" />
+	</replace>
+
+	<replace>
+		<trigger type="regex" min="0" max="100">msgbox_vba_yesno_filter:([A-Za-z_.]+):([A-Za-z_.]+):([A-Za-z_.]+):([A-Za-z_.]+):([A-Za-z_.]+):</trigger>
+		<text>	If MsgBox("★表示文字列★", #ATOK::REGEX::CAPTURE[2]# + #ATOK::REGEX::CAPTURE[1]#) = #ATOK::REGEX::CAPTURE[3]# Then
+		' #ATOK::REGEX::CAPTURE[4]#
+	Else
+		' #ATOK::REGEX::CAPTURE[5]#
+	End If</text>
+
+		<help class="msgbox" />
+	</replace>
+
+
+
+
+
+
+	<replace>
+		<trigger>msgbox:js:</trigger>
+		<text>window.alert("★表示文字列★");</text>
+		<help class="msgbox" />
+	</replace>
+
+	<replace>
+		<trigger type="regex" min="0" max="100">msgbox:(error:|)(ok:|)js:</trigger>
+		<text>window.alert("★表示文字列★");</text>
+		<help class="msgbox" />
+	</replace>
+
+	<replace>
+		<trigger type="regex" min="0" max="100">msgbox:(info:|)(okcancel:|)js:</trigger>
+		<text>if(window.confirm('★表示文字列★')){
+	// OK
+}else{
+	// Cancel
+}
+</text>
+		<help class="msgbox" />
+	</replace>
+
+
+	<view>
+		<trigger type="regex" min="0" max="100">msgbox:(info:|error:|hatena:|stop:|)(ok:|okcancel:|yesno:|)js:</trigger>
+		<text><![CDATA[<html xmlns="http://www.w3.org/1999/xhtml"><head><title>js</title></head><body>言語:jsは、指定パラメータは対応していません。</body></html>]]></text>
+		<help class="msgbox" />
+	</view>
+
+
+
+	<replace>
+		<trigger>msgbox:matlab:</trigger>
+		<text>h = msgbox('★表示文字列★');</text>
+		<help class="msgbox" />
+	</replace>
+
+	<replace>
+		<trigger type="regex" min="0" max="100">msgbox:(info|error|hatena|stop):(ok:|)matlab:</trigger>
+		<text>h = msgbox('★表示文字列★','★タイトル★', #ATOK::INPUT::TXT[msgbox_filter_option:matlab:#ATOK::REGEX::CAPTURE[1]#:]# );</text>
+		<help class="msgbox" />
+	</replace>
+
+
+	<view>
+		<trigger type="regex" min="0" max="100">msgbox:(info:|error:|hatena:|stop:|)(ok:|okcancel:|yesno:|)matlab:</trigger>
+		<text><![CDATA[<html xmlns="http://www.w3.org/1999/xhtml"><head><title>js</title></head><body>言語:matlabは、指定パラメータは対応していません。</body></html>]]></text>
+		<help class="msgbox" />
+	</view>
+
+
+
+
+	<replace>
+		<trigger>msgbox:objc:</trigger>
+		<text>UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:@"★タイトル★"
+                          message:@"★表示文字列★"
+                          delegate:self 
+                          cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];</text>
+		<help class="msgbox" />
+	</replace>
+
+
+	<replace>
+		<trigger type="regex" min="0" max="100">msgbox:(ok:|)objc:</trigger>
+		<text>UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:@"★タイトル★"
+                          message:@"★表示文字列★"
+                          delegate:self 
+                          cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];</text>
+		<help class="msgbox" />
+	</replace>
+
+	<replace>
+		<trigger type="regex" min="0" max="100">msgbox:(okcancel:)objc:</trigger>
+		<text>UIAlertView *alert = [[UIAlertView alloc] init];
+                          alert.delegate = self;
+                          alert.title = @"★タイトル★";
+                          alert.message = @"★表示文字列★";
+                          [alert addButtonWithTitle:@"キャンセル"];
+                          [alert addButtonWithTitle:@"OK"];
+    [alert show];
+
+...
+// メッセージボックスのコールバック
+-(void)alertView:(UIAlertView*)alertView
+        clickedButtonAtIndex:(NSInteger)buttonIndex {
+
+  switch (buttonIndex) {
+    case 0:
+      // Cancel
+      break;
+    case 1:
+      // OK
+      break;
+  }
+
+}
+
+</text>
+		<help class="msgbox" />
+	</replace>
+
+
+	<replace>
+		<trigger type="regex" min="0" max="100">msgbox:(yesno:)objc:</trigger>
+		<text>UIAlertView *alert = [[UIAlertView alloc] init];
+                          alert.delegate = self;
+                          alert.title = @"★タイトル★";
+                          alert.message = @"★表示文字列★";
+                          [alert addButtonWithTitle:@"いいえ"];
+                          [alert addButtonWithTitle:@"はい"];
+    [alert show];
+
+...
+// メッセージボックスのコールバック
+-(void)alertView:(UIAlertView*)alertView
+        clickedButtonAtIndex:(NSInteger)buttonIndex {
+
+  switch (buttonIndex) {
+    case 0:
+      // いいえ
+      break;
+    case 1:
+      // はい
+      break;
+  }
+
+}
+
+</text>
+		<help class="msgbox" />
+	</replace>
+
+	<view>
+		<trigger type="regex" min="0" max="100">msgbox:(info:|error:|hatena:|stop:|)(ok:|okcancel:|yesno:|)objc:</trigger>
+		<text><![CDATA[<html xmlns="http://www.w3.org/1999/xhtml"><head><title>js</title></head><body>言語:objcは、指定パラメータは対応していません。</body></html>]]></text>
+		<help class="msgbox" />
+	</view>
+
+
+
+	<replace>
+		<trigger type="regex" min="0" max="100">msgbox:(ok:|)and:</trigger>
+		<text>        new AlertDialog.Builder(getActivity())
+                .setTitle("★タイトル★")
+                .setMessage("★表示文字列★")
+                .setPositiveButton("OK", null)
+                .show();
+        </text>
+		<help class="msgbox" />
+	</replace>
+
+	<replace>
+		<trigger type="regex" min="0" max="100">msgbox:okcancel:and:</trigger>
+		<text>        new AlertDialog.Builder(getActivity())
+                .setTitle("★タイトル★")
+                .setMessage("★表示文字列★")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // OK
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
+        </text>
+		<help class="msgbox" />
+	</replace>
+
+	<replace>
+		<trigger type="regex" min="0" max="100">msgbox:yesno:and:</trigger>
+		<text>        new AlertDialog.Builder(getActivity())
+                .setTitle("★タイトル★")
+                .setMessage("★表示文字列★")
+                .setPositiveButton("はい", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // はい
+                    }
+                })
+                .setNegativeButton("いいえ", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // いいえ
+                    }
+                })
+                .show();
+        </text>
+		<help class="msgbox" />
+	</replace>
+
+	<view>
+		<trigger type="regex" min="0" max="100">msgbox:(info:|error:|hatena:|stop:|)(ok:|okcancel:|yesno:|)and:</trigger>
+		<text><![CDATA[<html xmlns="http://www.w3.org/1999/xhtml"><head><title>and</title></head><body>言語:andは、指定パラメータは対応していません。</body></html>]]></text>
+		<help class="msgbox" />
+	</view>
+
+
+
+
+	<replace>
+		<trigger type="regex" min="0" max="100">msgbox:(ok:|)swing:</trigger>
+		<text>JOptionPane.showMessageDialog(parent, 
+    "★表示文字列★",
+    "★タイトル★",
+     PLAIN_MESSAGE);</text>
+		<help class="msgbox" />
+	</replace>
+
+	<replace>
+		<trigger type="regex" min="0" max="100">msgbox:(info|error|hatena|stop):(ok:|)swing:</trigger>
+		<text>JOptionPane.showMessageDialog(parent, 
+    "★表示文字列★",
+    "★タイトル★",
+     #ATOK::INPUT::TXT[msgbox_filter_option:swing:#ATOK::REGEX::CAPTURE[1]#:]#);</text>
+		<help class="msgbox" />
+	</replace>
+
+
+	<view>
+		<trigger type="regex" min="0" max="100">msgbox:(info:|error:|hatena:|stop:|)(ok:|okcancel:|yesno:|)swing:</trigger>
+		<text><![CDATA[<html xmlns="http://www.w3.org/1999/xhtml"><head><title>swing</title></head><body>言語:swingは、指定パラメータは対応していません。</body></html>]]></text>
+		<help class="msgbox" />
+	</view>
+
+
+
+
+</atokdef>

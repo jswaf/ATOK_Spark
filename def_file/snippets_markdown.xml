@@ -1,0 +1,53 @@
+<atokdef version="1.0">
+	<help name="code_markdown">
+		<guidance>ソースコードをマークダウンで囲う</guidance>
+		<detail>wiki等にソースコードを貼り付ける際のMarkdownでの囲い方のスニペットです。</detail>
+		<example guid="ソースコードをQiitaに貼り付け">code-qiita:</example>
+		<example guid="ソースコードをTracに貼り付け">code-trac:</example>
+		<example guid="ソースコードをRedmineに貼り付け">code-redmine:</example>
+		<example guid="ソースコードをGithubに貼り付け">code-github:</example>
+	</help>
+
+
+	<replace>
+		<trigger>code-qiita:</trigger>
+		<text><![CDATA[
+```ruby:qiita.rb
+ puts 'Qiitaのマークダウンでコードを埋め込み'
+```
+]]></text>
+		<help class="code_markdown" />
+	</replace>
+
+	<replace>
+		<trigger>code-trac:</trigger>
+		<text><![CDATA[
+{{{
+#!ruby
+ puts 'Tracのマークダウンでコードを埋め込み'
+}}}
+]]></text>
+		<help class="code_markdown" />
+	</replace>
+
+	<replace>
+		<trigger>code-redmine:</trigger>
+		<text><![CDATA[
+``` ruby
+ puts 'Redmineのマークダウンでコードを埋め込み'
+```
+]]></text>
+		<help class="code_markdown" />
+	</replace>
+
+
+	<replace>
+		<trigger>code-github:</trigger>
+		<text><![CDATA[
+```rb
+ puts 'Githubのマークダウンでコードを埋め込み'
+```
+]]></text>
+		<help class="code_markdown" />
+	</replace>
+</atokdef>

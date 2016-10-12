@@ -1,0 +1,58 @@
+<atokdef version="1.0">
+	<help name="clip">
+		<guidance>クリップボード履歴管理</guidance>
+		<detail>クリップボードの履歴の表示と、確定を行います。さかのぼれるクリップボードは5件です。</detail>
+		<example guid="履歴一覧の表示">clip:</example>
+		<example guid="1つめの履歴(現在)の確定">clip:1:</example>
+		<example guid="2つめの履歴の確定">clip:2:</example>
+		<example guid="3つめの履歴の確定">clip:3:</example>
+		<example guid="4つめの履歴の確定">clip:4:</example>
+		<example guid="5つめの履歴の確定">clip:5:</example>
+	</help>
+
+	<view>
+		<trigger>clip:</trigger>
+		<text><![CDATA[
+		<?xml version='1.0' encoding='UTF-8' ?><html xmlns='http://www.w3.org/1999/xhtml'>
+		<body>
+		1: #ATOK::CLIPBOARD::HISTORY[0]#<br /><hr />
+		2: #ATOK::CLIPBOARD::HISTORY[1]#<br /><hr />
+		3: #ATOK::CLIPBOARD::HISTORY[2]#<br /><hr />
+		4: #ATOK::CLIPBOARD::HISTORY[3]#<br /><hr />
+		5: #ATOK::CLIPBOARD::HISTORY[4]#<br /><hr />
+		</body></html>
+		]]></text>
+		<help class="clip" />
+	</view>
+
+	<replace>
+		<trigger>clip:1:</trigger>
+		<text preprocess="xmldecode;">#ATOK::CLIPBOARD::HISTORY[0]#</text>
+		<help class="clip" />
+	</replace>
+
+	<replace>
+		<trigger>clip:2:</trigger>
+		<text preprocess="xmldecode;">#ATOK::CLIPBOARD::HISTORY[1]#</text>
+		<help class="clip" />
+	</replace>
+
+	<replace>
+		<trigger>clip:3:</trigger>
+		<text preprocess="xmldecode;">#ATOK::CLIPBOARD::HISTORY[2]#</text>
+		<help class="clip" />
+	</replace>
+
+	<replace>
+		<trigger>clip:4:</trigger>
+		<text preprocess="xmldecode;">#ATOK::CLIPBOARD::HISTORY[3]#</text>
+		<help class="clip" />
+	</replace>
+
+	<replace>
+		<trigger>clip:5:</trigger>
+		<text preprocess="xmldecode;">#ATOK::CLIPBOARD::HISTORY[4]#</text>
+		<help class="clip" />
+	</replace>
+
+</atokdef>

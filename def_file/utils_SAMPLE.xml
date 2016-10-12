@@ -1,0 +1,7 @@
+<atokdef version="1.0">
+	<replace>
+		<trigger>test:</trigger>
+		<text>This is ATOK Sparkテスト実行</text>
+		<help guidance="動作のテスト用コマンド" detail="ATOK Sparkの動作確認用です。置換処理をテストします。"/>
+	</replace>
+</atokdef>

@@ -1,0 +1,52 @@
+<atokdef version="1.0">
+
+	<help name="prefecture">
+		<guidance>列挙型サンプル（都道府県名）</guidance>
+		<detail>都道府県名のメンバーを確定します</detail>
+		<example guid="都道府県名一覧を確定">kenmei:</example>
+		<example guid="HTMLのリスト形式で確定">kenmeisel:</example>
+		<example guid="Tracリスト形式で確定">tkenmei:</example>
+		<example guid="Qiitaリスト形式で確定">qkenmei:</example>
+		<example guid="ビュー機能で都道府県名を表示">view-kenmei:</example>
+	</help>
+
+	<replace>
+		<trigger>kenmei:</trigger>
+		<text type="xslt"
+			xml="demo_prefecture/prefecture.xml"
+			xsl="demo_prefecture/crlf.xsl" />
+		<help class="prefecture" />
+	</replace>
+	
+	<replace>
+		<trigger>kenmeisel:</trigger>
+		<text type="xslt"
+			xml="demo_prefecture/prefecture.xml"
+			xsl="demo_prefecture/htmlop.xsl" />
+		<help class="prefecture" />
+	</replace>
+	
+	<replace>
+		<trigger>tkenmei:</trigger>
+		<text type="xslt"
+			xml="demo_prefecture/prefecture.xml"
+			xsl="demo_prefecture/trac.xsl" />
+		<help class="prefecture" />
+	</replace>
+	
+	<replace>
+		<trigger>qkenmei:</trigger>
+		<text type="xslt"
+			xml="demo_prefecture/prefecture.xml"
+			xsl="demo_prefecture/qiita.xsl" />
+		<help class="prefecture" />
+	</replace>
+
+	<view>
+		<trigger>view-kenmei:</trigger>
+		<text type="xslt"
+			xml="demo_prefecture/prefecture.xml"
+			xsl="demo_prefecture/htmlview.xsl" />
+		<help class="prefecture" />
+	</view>
+</atokdef>

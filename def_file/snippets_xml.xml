@@ -1,0 +1,12 @@
+<atokdef version="1.0">
+
+	<replace>
+		<trigger type="regex" min="3" max="17">t:([a-zA-Z0-9]{1,15}):</trigger>
+		<text><![CDATA[<#ATOK::REGEX::CAPTURE[1]#>#ATOK::CURSOR#</#ATOK::REGEX::CAPTURE[1]#>]]></text>
+		<help guidance="xmlタグの簡易入力スニペット" detail="xmlの開始タグと終了タグをセットで入力します。">
+			<example guid="span要素を入力">t:span:</example>
+			<creator>[issue #1] @yoshinof</creator>
+		</help>
+	</replace>
+
+</atokdef>

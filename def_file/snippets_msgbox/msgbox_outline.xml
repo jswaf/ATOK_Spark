@@ -1,0 +1,28 @@
+<xml>
+	<param guid="メッセージボックス種別">
+		<type guid="エラーを示します">error:</type>
+		<type guid="情報表示を示します">info:</type>
+		<type guid="クエスチョンを示します">hatena:</type>
+		<type guid="システムストップを示します">stop:</type>
+		<type guid="種別なし"></type>
+	</param>
+
+	<param guid="選択肢">
+		<type guid="[OK]のみ表示">ok:</type>
+		<type guid="[OK][CANCEL]の二択">okcancel:</type>
+		<type guid="[はい][いいえ]の二択">yesno:</type>
+	</param>
+
+	<param guid="出力言語">
+		<type guid="Windows C#">cs:</type>
+		<type guid="Windows C++ (Win32)">win32:</type>
+		<type guid="Windows C++ (MFC)">mfc:</type>
+		<type guid="Mac/iOS Objective C++">objc:</type>
+		<type guid="Android Java">and:</type>
+		<type guid="VBA / VB6">vba:</type>
+		<type guid="Javascript">js:</type>
+		<type guid="MATLAB">matlab:</type>
+		<type guid="Java Swing">swing:</type>
+	</param>
+
+</xml>

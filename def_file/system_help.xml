@@ -1,0 +1,39 @@
+<atokdef version="1.0">
+	<help name="help">
+		<guidance>ヘルプコマンド</guidance>
+		<detail>ATOK Sparkで実行可能なトリガーを列挙します。</detail>
+		<notice>プラグインは対象となりません。</notice>
+		<example guid="トリガーを一覧します">help:</example>
+	</help>
+	
+	<view>
+		<trigger>help:</trigger>
+		<text type="xslt"
+			xml="system_help/wrapper.xml"
+			xsl="system_help/normal.xsl" />
+		<help class="help" />
+	</view>
+	
+	<view>
+		<trigger type="regex" min="0" max="100">help:([a-zA-Z0-9:]+):</trigger>
+		<text type="xslt"
+			xml="system_help/wrapper.xml"
+			xsl="system_help/filter.xsl" />
+		<define>#ATOK::REGEX::CAPTURE[1]#:</define>
+		<define>#ATOK::REGEX::CAPTURE[1]#</define>
+		<help class="help" />
+	</view>
+		
+		
+
+	<view>
+		<trigger type="regex" min="0" max="100">([a-zA-Z0-9:]+)&gt;&gt;</trigger>
+		<text type="xslt"
+			xml="system_help/wrapper.xml"
+			xsl="system_help/suggest.xsl" />
+		<define>#ATOK::REGEX::CAPTURE[1]#:</define>
+		<define>#ATOK::REGEX::CAPTURE[1]#</define>
+		<help class="help" />
+	</view>
+		
+</atokdef>

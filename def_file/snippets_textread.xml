@@ -1,0 +1,230 @@
+<atokdef>
+	<help name="textread">
+		<guidance>テキストファイル読み込みのスニペット</guidance>
+		<detail>各種プログラム言語において、テキストファイル読み込みテンプレのスニペットを入力します。</detail>
+		<example guid="C言語でのテキストファイル全体読み込みのスニペット">textread:c:</example>
+		<example guid="C++言語でのテキストファイル全体読み込みのスニペット">textread:cpp:</example>
+		<example guid="C#言語でのテキストファイル全体読み込みのスニペット">textread:cs:</example>
+		<example guid="Java言語でのテキストファイル全体読み込みのスニペット">textread:java:</example>
+		<example guid="Perl言語でのテキストファイル全体読み込みのスニペット">textread:perl:</example>
+		<example guid="Python言語でのテキストファイル全体読み込みのスニペット">textread:python:</example>
+		<example guid="Ruby言語でのテキストファイル全体読み込みのスニペット">textread:ruby:</example>
+	</help>
+
+	<replace>
+		<trigger>textread:c:</trigger>
+<text><![CDATA[
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
+int main(){
+	char* text;
+	long file_size;
+	struct stat stbuf;
+	FILE* fp;
+	int fd;
+	size_t readed;
+	
+	fd = open( "★読み込みファイル★", O_RDONLY | O_BINARY );
+	if( fd == -1 ){
+		return 1;
+	}
+	
+	fp = fdopen( fd, "rb" );
+	if( fp == NULL ){
+		close(fd);
+		return 1;
+	}
+	
+	if( fstat( fd, &stbuf ) == -1 ){
+		fclose(fp);
+		return 1;
+	}
+	
+	file_size = stbuf.st_size;
+	text = (char*)malloc( file_size+1 );
+	memset( text, 0, file_size+1 );
+	if( text == NULL ){
+		fclose(fp);
+		return 1;
+	}
+
+	fseek(fp, 0L, SEEK_SET);
+	readed = fread( text, sizeof(char), file_size, fp );
+	if( readed != file_size ){
+		free(text);
+		fclose(fp);
+		return 1;
+	}
+	fclose(fp);
+	
+	// TODO
+	// 変数textにファイル読み込み結果が格納されています。
+	// ...
+
+	// 解放
+	free(text);
+	return 0;
+}
+]]></text>
+		<help class="textread" />
+	</replace>
+
+
+
+	<replace>
+		<trigger>textread:cpp:</trigger>
+<text><![CDATA[
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <iterator>
+
+int main()
+{
+	std::ifstream ifs( "★読み込みファイル★" );
+	if( ifs.fail() ){
+		return 1;
+	}
+	std::string text(
+		( std::istreambuf_iterator<char>( ifs ) ), 
+		std::istreambuf_iterator<char>()); 
+	
+	// TODO
+	// 変数textにファイル読み込み結果が格納されています。
+	// ...
+	return 0;
+}
+]]></text>
+		<help class="textread" />
+	</replace>
+
+
+
+	<replace>
+		<trigger>textread:cs:</trigger>
+<text><![CDATA[
+            string text = "";
+            try
+            {
+                using (System.IO.StreamReader sr = new System.IO.StreamReader("★読み込みファイル★", System.Text.Encoding.UTF8))
+                {
+                    text = sr.ReadToEnd();
+                }
+            }
+            catch (Exception)
+            {
+                // TODO: IOエラー / ファイルが見つからない
+            }
+	// TODO
+	// 変数textにファイル読み込み結果が格納されています。
+	// ...
+
+]]></text>
+		<help class="textread" />
+	</replace>
+
+
+
+
+	<replace>
+		<trigger>textread:java:</trigger>
+<text><![CDATA[
+import java.io.*;
+import java.util.List;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.stream.Collectors;
+
+    public static void func() {
+        String text = "";
+        try{
+            List<String> lines = Files.readAllLines( Paths.get("★読み込みファイル★"), Charset.forName("UTF-8") );
+            text = String.join( System.getProperty("line.separator"), lines );
+        }catch( IOException e ){
+            // TODO: IOエラー
+        }
+	// TODO
+	// 変数textにファイル読み込み結果が格納されています。
+	// ...
+    }
+
+]]></text>
+		<help class="textread" />
+	</replace>
+
+
+
+
+	<replace>
+		<trigger>textread:perl:</trigger>
+<text><![CDATA[
+my $text = '';
+
+my $fh;
+if( !open($fh, '<', './★読み込みファイル★')){
+	# TODO: error
+	die("error");
+}
+while (my $line = <$fh>) {
+    $text .= $line;
+}
+# TODO
+# 変数textにファイル読み込み結果が格納されています。
+# ...
+]]></text>
+		<help class="textread" />
+	</replace>
+
+
+
+	<replace>
+		<trigger>textread:python:</trigger>
+<text><![CDATA[
+text = ""
+try:
+	f = open('★読み込みファイル★', 'r')
+	try:
+		text = f.read()  # ファイル終端まで全て読んだデータを返す
+	except IOError, e:
+		raise
+	finally:
+		f.close()
+except IOError, e:
+	# TODO: IO Error
+	print "error"
+
+# TODO
+# 変数textにファイル読み込み結果が格納されています。
+# ...
+]]></text>
+		<help class="textread" />
+	</replace>
+
+
+	<replace>
+		<trigger>textread:ruby:</trigger>
+<text><![CDATA[
+text = ""
+begin
+  File.open("★読み込みファイル★", "r") do |file|
+    text = file.read
+  end
+
+rescue
+  # TODO:
+  puts "I/O error..."
+end
+
+# TODO
+# 変数textにファイル読み込み結果が格納されています。
+# ...
+]]></text>
+		<help class="textread" />
+	</replace>
+
+</atokdef>

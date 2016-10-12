@@ -1,0 +1,33 @@
+<xml>
+	<option lang="mfc" type="error">MB_ICONEXCLAMATION</option>
+	<option lang="mfc" type="info">MB_ICONINFORMATION</option>
+	<option lang="mfc" type="hatena">MB_ICONQUESTION</option>
+	<option lang="mfc" type="stop">MB_ICONSTOP</option>
+
+	<option lang="win32" type="error">MB_ICONEXCLAMATION</option>
+	<option lang="win32" type="info">MB_ICONINFORMATION</option>
+	<option lang="win32" type="hatena">MB_ICONQUESTION</option>
+	<option lang="win32" type="stop">MB_ICONSTOP</option>
+
+	<option lang="cs" type="error">MessageBoxIcon.Error</option>
+	<option lang="cs" type="info">MessageBoxIcon.Information</option>
+	<option lang="cs" type="hatena">MessageBoxIcon.Question</option>
+	<option lang="cs" type="stop">MessageBoxIcon.Stop</option>
+
+	<option lang="vba" type="error">vbExclamation</option>
+	<option lang="vba" type="info">vbInformation</option>
+	<option lang="vba" type="hatena">vbQuestion</option>
+	<option lang="vba" type="stop">vbCritical</option>
+
+	<option lang="matlab" type="error">warn</option>
+	<option lang="matlab" type="info">help</option>
+	<option lang="matlab" type="hatena">help</option>
+	<option lang="matlab" type="stop">error</option>
+
+	<option lang="swing" type="error">WARNING_MESSAGE</option>
+	<option lang="swing" type="info">INFORMATION_MESSAGE</option>
+	<option lang="swing" type="hatena">QUESTION_MESSAGE</option>
+	<option lang="swing" type="stop">ERROR_MESSAGE</option>
+
+
+</xml>

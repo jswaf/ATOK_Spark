@@ -1,0 +1,30 @@
+<atokdef version="1.0">
+	<help name="logging">
+		<guidance>ログ埋め込みのスニペットです</guidance>
+		<detail>ソースコード中にログ出力関数を埋め込むためのスニペットです。トリガー打鍵後に、カーソルをログメッセージ入力欄へ移動します。</detail>
+		<example guid="INFO(情報)レベルのログ出力">log:</example>
+		<example guid="WARNING(警告)レベルのログ出力">logw:</example>
+		<example guid="ERROR(エラー)レベルのログ出力">loge:</example>
+		<notice>ご利用の言語およびログのシステムにあわせて調整ください。</notice>
+	</help>
+
+
+	<replace>
+		<trigger>log:</trigger>
+		<text>logger.log( Level.INFO, "#ATOK::CURSOR#" );</text>
+		<help class="logging"/>
+	</replace>
+
+	<replace>
+		<trigger>logw:</trigger>
+		<text>logger.log( Level.WARNING, "#ATOK::CURSOR#" );</text>
+		<help class="logging"/>
+	</replace>
+
+	<replace>
+		<trigger>loge:</trigger>
+		<text>logger.log( Level.ERROR, "#ATOK::CURSOR#" );</text>
+		<help class="logging"/>
+	</replace>
+
+</atokdef>

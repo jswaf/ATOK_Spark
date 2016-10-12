@@ -1,0 +1,36 @@
+<atokdef version="1.0">
+
+	<replace>
+		<trigger>main:</trigger>
+		<text><![CDATA[int main( int argc, char* argv[] )
+{
+	// パラメータ解析
+	std::map<std::string,std::string> xMap;
+	if( argc == 1 ){
+		// 引数なし
+	}else{
+		// 引数あり
+		xMap = parse( argc, argv);
+	}
+
+	★ここにメインの処理を記載します
+	return 0;
+}
+]]></text>
+		<help guidance="C++のメイン関数スニペット" detail="C++のメイン関数のスニペット例です"/>
+	</replace>
+
+
+	<replace>
+		<trigger>definc:</trigger>
+		<text><![CDATA[#include <stdio.h>
+#include <stdlib.h>
+#include <vector>
+#include <map>
+#include <string>
+]]></text>
+		<help guidance="C++のincludeリストのスニペット" detail="C++のinclude文です。必要に応じて追加/削除ください。"/>
+	</replace>
+
+
+</atokdef>

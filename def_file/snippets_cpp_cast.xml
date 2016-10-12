@@ -1,0 +1,87 @@
+<atokdef version="1.0">
+	<help name="cppcast">
+		<guidance>C++言語のキャストのスニペット</guidance>
+		<detail>C++スタイルのキャストについて入力します。キャストの先頭文字１文字で指定します。また、続いてキャスト先の型名を入力できます。</detail>
+		<example guid="static_cast">cppcast:s:</example>
+		<example guid="dynamic_cast">cppcast:d:</example>
+		<example guid="const_cast">cppcast:d:</example>
+		<example guid="reinterpret_cast">cppcast:r:</example>
+		<example guid="static_castでint型に変換">cppcast:s:int:</example>
+		<example guid="dynamic_castでIApplication*型に変換">cppcast:d:IApplication*:</example>
+	</help>
+
+	<view>
+		<trigger>cppcast:</trigger>
+		<text><![CDATA[<html xmlns="http://www.w3.org/1999/xhtml"><head><title>cppcast</title></head><body>
+		<h3>cppcast</h3>
+		<div>C++のキャストのスニペットです。キャスト種別を指定してください。(例： cppcast:s:)</div>
+		<div>また、それに続きキャスト後の型を入力することもできます。（例： cppcast:s:int:）</div>
+		<hr />
+
+		<h3>s: static_cast</h3>
+		<div>静的なキャスト。暗黙の型変換を強制するときに使います。int型をchar型に変換したり、size_t型をint型に変換したり、int型をfloat型に変換する際に使用します。また、ポインタ操作（void*の変換）や、基底クラスへのポインターを派生クラスへのポインターに変換するなどの操作に使用できますが、期待する実体と一致していない場合は安全ではありません。</div>
+		<hr />
+		<h3>d: dynamic_cast</h3>
+		<div>ダウンキャスト(抽象化されたオブジェクトを派生クラスの型に変換する)に利用します。このキャストは実行時にコストが発生する場合があります。そのため、本キャストを避けるような設計を心がける必要があります。また、本キャストを多用する場合はクラス設計そのものの間違いを疑うべきといわれています。キャストに失敗した場合はNULLが返ります。</div>
+		<hr />
+		<h3>r: reinterpret_cast</h3>
+		<div>実装依存の移植性のない低レベルなキャストを行います。ポインタとintの変換に使用します。このキャストは原則的に避けるべきです。（ただし、その代わりにCスタイルのキャストを呼び出すくらいであれば、本キャストを使用することで、危険性を認知した上で利用していることを周知し、コード移植の際にも注意を促すことができます）。</div>
+		<hr />
+		<h3>c: const_cast</h3>
+		<div>constを外します。つまり、const int型から、int型をえます。対象となるオブジェクトの実装依存により、constを外した後に書き込みを行った際に、未定義の動作が起こる場合があります。</div>
+		<hr />
+
+		</body></html>]]></text>
+		<help class="msgbox" />
+	</view>
+
+	<replace>
+		<trigger>cppcast:s:</trigger>
+		<text><![CDATA[static_cast<#ATOK::CURSOR#>(  )]]></text>
+		<help class="cppcast" />
+	</replace>
+
+	<replace>
+		<trigger>cppcast:d:</trigger>
+		<text><![CDATA[dynamic_cast<#ATOK::CURSOR#>(  )]]></text>
+		<help class="cppcast" />
+	</replace>
+	
+	<replace>
+		<trigger>cppcast:r:</trigger>
+		<text><![CDATA[reinterpret_cast<#ATOK::CURSOR#>(  )]]></text>
+		<help class="cppcast" />
+	</replace>
+	
+	<replace>
+		<trigger>cppcast:c:</trigger>
+		<text><![CDATA[const_cast<#ATOK::CURSOR#>(  )]]></text>
+		<help class="cppcast" />
+	</replace>
+	
+	
+
+	<replace>
+		<trigger type="regex" min="0" max="100">cppcast:s:([a-zA-Z0-9:_*&amp;]+):</trigger>
+		<text preprocess="xmldecode;"><![CDATA[static_cast<#ATOK::REGEX::CAPTURE[1]#>( #ATOK::CURSOR# )]]></text>
+		<help class="cppcast" />
+	</replace>
+
+	<replace>
+		<trigger type="regex" min="0" max="100">cppcast:d:([a-zA-Z0-9:_*&amp;]+):</trigger>
+		<text preprocess="xmldecode;"><![CDATA[dynamic_cast<#ATOK::REGEX::CAPTURE[1]#>( #ATOK::CURSOR# )]]></text>
+		<help class="cppcast" />
+	</replace>
+
+	<replace>
+		<trigger type="regex" min="0" max="100">cppcast:r:([a-zA-Z0-9:_*&amp;]+):</trigger>
+		<text preprocess="xmldecode;"><![CDATA[reinterpret_cast<#ATOK::REGEX::CAPTURE[1]#>( #ATOK::CURSOR# )]]></text>
+		<help class="cppcast" />
+	</replace>
+
+	<replace>
+		<trigger type="regex" min="0" max="100">cppcast:c:([a-zA-Z0-9:_*&amp;]+):</trigger>
+		<text preprocess="xmldecode;"><![CDATA[const_cast<#ATOK::REGEX::CAPTURE[1]#>( #ATOK::CURSOR# )]]></text>
+		<help class="cppcast" />
+	</replace>
+</atokdef>

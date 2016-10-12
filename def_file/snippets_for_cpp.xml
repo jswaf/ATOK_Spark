@@ -1,0 +1,16 @@
+<atokdef version="1.0">
+
+	<replace>
+		<trigger type="regex" min="5" max="19">for([a-zA-Z0-9]{1,15}):</trigger>
+		<text><![CDATA[
+		for( int #ATOK::REGEX::CAPTURE[1]# = 0; #ATOK::REGEX::CAPTURE[1]# < #ATOK::CURSOR#; #ATOK::REGEX::CAPTURE[1]#++ ){
+			★TODO
+		}
+		]]></text>
+		<help guidance="for文の簡易入力スニペット" detail="プログラムでよく使う単純増加型のfor文を簡単に入力します。『for+[変数]+:』形式で入力します。">
+			<example guid="変数[i]をとるfor文を入力">fori:</example>
+			<example guid="変数[xIndex]をとるfor文を入力">forxIndex:</example>
+		</help>
+	</replace>
+
+</atokdef>

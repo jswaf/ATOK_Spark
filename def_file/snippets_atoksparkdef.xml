@@ -1,0 +1,143 @@
+﻿<atokdef version="1.0">
+	<help name="help">
+		<guidance>ATOK Spark 定義ファイルのスニペット</guidance>
+		<detail>ATOK Spark 定義ファイル(atokdef)の入力を支援するスニペットです。</detail>
+		<example>ad:</example>
+	</help>
+
+	<view>
+		<trigger>ad:</trigger>
+		<text><![CDATA[
+<html xmlns="http://www.w3.org/1999/xhtml"><body>
+	<h3>ATOK Spark 定義ファイル</h3>
+	<div>ATOK Spark 定義ファイル(<span style="color:red">a</span>tok<span style="color:red">d</span>ef)のスニペットです。</div>
+	<hr />
+
+	<h3>ad:new:[トリガー名:][正規表現ならre:]</h3>
+	<div>ATOK Spark 定義ファイルのひな形を入力します。</div>
+	<hr />
+	<h3>ad:replace:[トリガー名:][正規表現ならre:]</h3>
+	<div>新しい置換入力トリガーを入力します。</div>
+	<hr />
+	<h3>ad:view:[トリガー名:][正規表現ならre:]</h3>
+	<div>新しい閲覧表示トリガーを入力します。</div>
+	<hr />
+	<h3>ad:execute:[トリガー名:][正規表現ならre:]</h3>
+	<div>新しい外部実行トリガーを入力します。</div>
+	<hr />
+	<h3>ad:define:</h3>
+	<div>付加要素を入力します。</div>
+	<hr />
+	<h3>ad:example:[トリガー名:]</h3>
+	<div>ヘルプの例を追加します。</div>
+	<hr />
+</body></html>
+		]]></text>
+		<help class="help" />
+	</view>
+
+	<replace>
+		<trigger type="regex">ad:(new|replace|view|execute|help|example):</trigger>
+		<text>#ATOK::INPUT::TXT[ad:#ATOK::REGEX::CAPTURE[1]#:example:no:]#</text>
+		<help class="help"/>
+	</replace>
+	<replace>
+		<trigger type="regex">ad:(new|replace|view|execute|help|example):([a-zA-Z0-9_*&amp;]+):</trigger>
+		<text>#ATOK::INPUT::TXT[ad:#ATOK::REGEX::CAPTURE[1]#:#ATOK::REGEX::CAPTURE[2]#:no:]#</text>
+		<help class="help"/>
+	</replace>
+
+	<replace>
+		<trigger type="regex">ad:new:([a-zA-Z0-9_*&amp;]+):(re|no):</trigger>
+		<text><![CDATA[<atokdef version="1.0">
+#ATOK::INPUT::TXT[ad:help:#ATOK::REGEX::CAPTURE[1]#:#ATOK::REGEX::CAPTURE[2]#:]#
+
+#ATOK::INPUT::TXT[ad:replace:#ATOK::REGEX::CAPTURE[1]#:#ATOK::REGEX::CAPTURE[2]#:]#
+</atokdef>
+]]></text>
+		<help class="help"/>
+	</replace>
+
+	<replace>
+		<trigger type="regex">ad:replace:([a-zA-Z0-9_*&amp;]+):(re|no):</trigger>
+		<text preprocess="xmldecode;"><![CDATA[	<replace>
+		<trigger#ATOK::INPUT::TXT[ad:_trigger_type:#ATOK::REGEX::CAPTURE[2]#:]#>#ATOK::REGEX::CAPTURE[1]#:</trigger>
+		<text>&lt;![CDATA[#ATOK::CURSOR#★置換入力するテキスト★]]&gt;</text>
+		<help class="help"/>
+	</replace>]]></text>
+		<help class="help"/>
+	</replace>
+
+	<replace>
+		<trigger type="regex">ad:view:([a-zA-Z0-9_*&amp;]+):(re|no):</trigger>
+		<text preprocess="xmldecode;"><![CDATA[	<view>
+		<trigger#ATOK::INPUT::TXT[ad:_trigger_type:#ATOK::REGEX::CAPTURE[2]#:]#>#ATOK::REGEX::CAPTURE[1]#:</trigger>
+		<text>&lt;![CDATA[
+<html xmlns="http://www.w3.org/1999/xhtml"><body>
+	<h3>#ATOK::CURSOR#★見出し★</h3>
+	<div>★内容★</div>
+	<hr />
+</body></html>
+		]]&gt;</text>
+		<help class="help" />
+	</view>]]></text>
+		<help class="help"/>
+	</replace>
+
+	<replace>
+		<trigger type="regex">ad:execute:([a-zA-Z0-9_*&amp;]+):(re|no):</trigger>
+		<text><![CDATA[	<execute>
+		<trigger#ATOK::INPUT::TXT[ad:_trigger_type:#ATOK::REGEX::CAPTURE[2]#:]#>#ATOK::REGEX::CAPTURE[1]#:</trigger>
+		<text>#ATOK::CURSOR#★コマンドライン★</text>
+		<help class="help"/>
+	</execute>]]></text>
+		<help class="help"/>
+	</replace>
+
+	<replace>
+		<trigger>ad:define:</trigger>
+		<text><![CDATA[<define>#ATOK::CURSOR#</define>]]></text>
+		<help class="help"/>
+	</replace>
+
+	<replace>
+		<trigger type="regex">ad:help:([a-zA-Z0-9_*&amp;]+):(re|no):</trigger>
+		<text><![CDATA[	<help name="help">
+		<guidance>#ATOK::REGEX::CAPTURE[1]#:による置換</guidance>
+		<detail>このコマンドは別の文字列に置換する処理です。</detail>
+		<example>#ATOK::REGEX::CAPTURE[1]#:</example>
+	</help>]]></text>
+		<help class="help"/>
+	</replace>
+
+	<replace>
+		<trigger type="regex">ad:example:([a-zA-Z0-9_*&amp;]+):(re|no):</trigger>
+		<text><![CDATA[<example guid="#ATOK::CURSOR#★例の名前★">#ATOK::REGEX::CAPTURE[1]#:</example>]]></text>
+		<help class="help"/>
+	</replace>
+
+	<replace>
+		<trigger>ad:_trigger_type:no:</trigger>
+		<text></text>
+		<help class="help"/>
+	</replace>
+	<replace>
+		<trigger>ad:_trigger_type:re:</trigger>
+		<text> type="regex"</text>
+		<help class="help"/>
+	</replace>
+
+	<replace>
+		<trigger>ad:help:</trigger>
+		<text><![CDATA[	<help name="name">
+		<guidance>★TODO: ガイダンス</guidance>
+		<detail>★TODO: 詳細な説明</detail>
+		<example guid="★TODO: 事例ガイダンス">★TODO: 事例コマンド</example>
+		<example guid="★TODO: 事例ガイダンス">★TODO: 事例コマンド</example>
+		<notice>★TODO: 注意事項</notice>
+	</help>
+]]></text>
+		<help class="atokdev"/>
+	</replace>
+
+</atokdef>
